@@ -43,3 +43,22 @@ func (r *CreateCardRequest) Validate() error {
 	}
 	return nil
 }
+
+// UpdateCard
+
+type UpdateCardRequest struct {
+	Name        string `json:"name"`
+	Cost        *int64 `json:"cost"`
+	Power       *int64 `json:"power"`
+	Description string `json:"description"`
+	Source      string `json:"source"`
+	Image       string `json:"image"`
+}
+
+func (r *UpdateCardRequest) Validate() error {
+	// If any field is provided validation is truthy
+	if r.Name != "" || r.Cost != nil || r.Power != nil || r.Description != "" || r.Source != "" || r.Image != "" {
+		return nil
+	}
+	return fmt.Errorf("at least one parameter is needed or malformed body")
+}
