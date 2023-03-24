@@ -7,6 +7,20 @@ import (
 	"github.com/rodrigofmeneses/cosmic-snap/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update card
+// @Description Update a card
+// @Tags Cards
+// @Accept json
+// @Produce json
+// @Param id query string true "Card identification"
+// @Param request body UpdateCardRequest true "Request body"
+// @Success 200 {object} UpdateCardResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /card [put]
 func UpdateCardHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	request := UpdateCardRequest{}
