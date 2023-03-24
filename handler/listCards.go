@@ -7,6 +7,15 @@ import (
 	"github.com/rodrigofmeneses/cosmic-snap/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary List cards
+// @Description List all cards
+// @Tags Cards
+// @Produce json
+// @Success 200 {object} ListCardsResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /cards [get]
 func ShowCardsHandler(ctx *gin.Context) {
 	cards := []schemas.Card{}
 	// Find Cards
