@@ -8,6 +8,18 @@ import (
 	"github.com/rodrigofmeneses/cosmic-snap/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Delete card
+// @Description Delete a card
+// @Tags Cards
+// @Produce json
+// @Param id query string true "Card identification"
+// @Success 200 {object} DeleteCardResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /card [delete]
 func DeleteCardHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	// If not send id
