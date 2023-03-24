@@ -25,7 +25,6 @@ func sendSuccess(ctx *gin.Context, code int, op string, data interface{}) {
 type ErrorResponse struct {
 	Message string `json:"message"`
 }
-
 type CreateCardResponse struct {
 	Message string               `json:"message"`
 	Data    schemas.CardResponse `json:"data"`
@@ -34,7 +33,6 @@ type DeleteCardResponse struct {
 	Message string               `json:"message"`
 	Data    schemas.CardResponse `json:"data"`
 }
-
 type UpdateCardResponse struct {
 	Message string               `json:"message"`
 	Data    schemas.CardResponse `json:"data"`
@@ -43,7 +41,6 @@ type ListCardsResponse struct {
 	Message string                 `json:"message"`
 	Data    []schemas.CardResponse `json:"data"`
 }
-
 type ShowCardResponse struct {
 	Message string               `json:"message"`
 	Data    schemas.CardResponse `json:"data"`

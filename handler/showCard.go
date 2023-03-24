@@ -8,6 +8,17 @@ import (
 	"github.com/rodrigofmeneses/cosmic-snap/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Show card
+// @Description Show a card
+// @Tags Cards
+// @Produce json
+// @Param id query string true "Card identification"
+// @Success 200 {object} ShowCardResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /card [get]
 func ShowCardHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	// If not send id
