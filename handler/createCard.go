@@ -7,6 +7,18 @@ import (
 	"github.com/rodrigofmeneses/cosmic-snap/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create card
+// @Description Create a new card
+// @Tags Cards
+// @Accept json
+// @Produce json
+// @Param request body CreateCardRequest true "Request body"
+// @Success 201 {object} CreateCardResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /card [post]
 func CreateCardHandler(ctx *gin.Context) {
 	request := CreateCardRequest{}
 

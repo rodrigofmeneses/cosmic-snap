@@ -1,4 +1,241 @@
+definitions:
+  handler.CreateCardRequest:
+    properties:
+      cost:
+        type: integer
+      description:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      power:
+        type: integer
+      source:
+        type: string
+    type: object
+  handler.CreateCardResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CardResponse'
+      message:
+        type: string
+    type: object
+  handler.DeleteCardResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CardResponse'
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  handler.ListCardsResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.CardResponse'
+        type: array
+      message:
+        type: string
+    type: object
+  handler.ShowCardResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CardResponse'
+      message:
+        type: string
+    type: object
+  handler.UpdateCardRequest:
+    properties:
+      cost:
+        type: integer
+      description:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      power:
+        type: integer
+      source:
+        type: string
+    type: object
+  handler.UpdateCardResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CardResponse'
+      message:
+        type: string
+    type: object
+  schemas.CardResponse:
+    properties:
+      cost:
+        type: integer
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image:
+        type: string
+      name:
+        type: string
+      power:
+        type: integer
+      source:
+        type: string
+      updatedAt:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+paths:
+  /card:
+    delete:
+      description: Delete a card
+      parameters:
+      - description: Card identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.DeleteCardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Delete card
+      tags:
+      - Cards
+    get:
+      description: Show a card
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ShowCardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Show card
+      tags:
+      - Cards
+    post:
+      consumes:
+      - application/json
+      description: Creating a new card
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CreateCardRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handler.CreateCardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Create card
+      tags:
+      - Cards
+    put:
+      consumes:
+      - application/json
+      description: Update a card
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UpdateCardRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.UpdateCardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Update card
+      tags:
+      - Cards
+  /cards:
+    get:
+      description: List all cards
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListCardsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List cards
+      tags:
+      - Cards
 swagger: "2.0"

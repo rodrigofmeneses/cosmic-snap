@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/rodrigofmeneses/cosmic-snap/schemas"
 )
 
 func sendError(ctx *gin.Context, code int, msg string) {
@@ -21,4 +22,29 @@ func sendSuccess(ctx *gin.Context, code int, op string, data interface{}) {
 	})
 }
 
-type CreateCardResponse struct{}
+type ErrorResponse struct {
+	Message string `json:"message"`
+}
+
+type CreateCardResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.CardResponse `json:"data"`
+}
+type DeleteCardResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.CardResponse `json:"data"`
+}
+
+type UpdateCardResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.CardResponse `json:"data"`
+}
+type ListCardsResponse struct {
+	Message string                 `json:"message"`
+	Data    []schemas.CardResponse `json:"data"`
+}
+
+type ShowCardResponse struct {
+	Message string               `json:"message"`
+	Data    schemas.CardResponse `json:"data"`
+}
