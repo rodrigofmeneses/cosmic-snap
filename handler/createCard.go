@@ -24,7 +24,6 @@ func CreateCardHandler(ctx *gin.Context) {
 	request := CreateCardRequest{}
 
 	ctx.BindJSON(&request)
-	logger.Debugf("%v", request.Tags)
 
 	if err := request.Validate(); err != nil {
 		logger.Errorf("validation error: %v", err.Error())
