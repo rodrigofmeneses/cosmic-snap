@@ -38,5 +38,7 @@ func DeleteCardHandler(ctx *gin.Context) {
 		sendError(ctx, http.StatusInternalServerError, fmt.Sprintf("error deleting card with id: %s", id))
 		return
 	}
-	sendSuccess(ctx, http.StatusOK, "delete-card", &card)
+	// Response
+	cardResponse := formatCardToResponse(card)
+	sendSuccess(ctx, http.StatusOK, "delete-card", &cardResponse)
 }

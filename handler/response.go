@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/rodrigofmeneses/cosmic-snap/schemas"
@@ -21,6 +22,29 @@ func sendSuccess(ctx *gin.Context, code int, op string, data interface{}) {
 		"data":    data,
 	})
 }
+
+// Utils
+
+func formatCardToResponse(card schemas.Card) schemas.CardResponse {
+	tags := strings.Split(card.Tags, ",")
+
+	cardResponse := schemas.CardResponse{
+		ID:          card.ID,
+		CreatedAt:   card.CreatedAt,
+		UpdatedAt:   card.UpdatedAt,
+		DeletedAt:   card.DeletedAt.Time,
+		Name:        card.Name,
+		Power:       card.Power,
+		Cost:        card.Cost,
+		Description: card.Description,
+		Source:      card.Source,
+		Image:       card.Image,
+		Tags:        tags,
+	}
+	return cardResponse
+}
+
+// Docs
 
 type ErrorResponse struct {
 	Message string `json:"message"`

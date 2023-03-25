@@ -39,7 +39,7 @@ func CreateCardHandler(ctx *gin.Context) {
 	card := schemas.Card{
 		Name:        request.Name,
 		Cost:        *request.Cost,
-		Power:       *request.Cost,
+		Power:       *request.Power,
 		Description: request.Description,
 		Source:      request.Source,
 		Image:       request.Image,
@@ -51,20 +51,7 @@ func CreateCardHandler(ctx *gin.Context) {
 		sendError(ctx, http.StatusInternalServerError, "error creating card in database")
 		return
 	}
-
-	// Data to Response
-
-	tags := strings.Split(card.Tags, ",")
-
-	cardResponse := schemas.CardResponse{
-		Name:        card.Name,
-		Power:       card.Cost,
-		Cost:        card.Cost,
-		Description: card.Description,
-		Source:      card.Source,
-		Image:       card.Image,
-		Tags:        tags,
-	}
-
+	// Response
+	cardResponse := formatCardToResponse(card)
 	sendSuccess(ctx, http.StatusCreated, "create-card", cardResponse)
 }
