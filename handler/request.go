@@ -36,26 +36,15 @@ func (r *CreateCardRequest) Validate() error {
 	if r.Power == nil {
 		return errParamIsRequired("power", "int64")
 	}
-	if r.Description == "" {
-		return errParamIsRequired("description", "string")
-	}
 	if r.Source == "" {
 		return errParamIsRequired("source", "string")
 	}
 	if r.Image == "" {
 		return errParamIsRequired("image", "string")
 	}
-	if len(r.Tags) < 1 {
-		return errParamIsRequired("tags", "string[]")
-	} else {
-		// Check if any tag is null
-		for i := 0; i < len(r.Tags); i++ {
-			if r.Tags[i] == "" {
-				return errParamIsRequired("tag", "string")
-			}
-			if strings.Contains(r.Tags[i], ",") {
-				return fmt.Errorf("don't use commas on tags")
-			}
+	for i := 0; i < len(r.Tags); i++ {
+		if strings.Contains(r.Tags[i], ",") {
+			return fmt.Errorf("don't use commas on tags")
 		}
 	}
 	return nil
