@@ -24,5 +24,10 @@ func ShowCardsHandler(ctx *gin.Context) {
 		sendError(ctx, http.StatusInternalServerError, "error list cards in database")
 		return
 	}
-	sendSuccess(ctx, http.StatusOK, "list-cards", cards)
+	// Response
+	cardsResponse := []schemas.CardResponse{}
+	for i := 0; i < len(cards); i++ {
+		cardsResponse = append(cardsResponse, formatCardToResponse(cards[i]))
+	}
+	sendSuccess(ctx, http.StatusOK, "list-cards", cardsResponse)
 }
