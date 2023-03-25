@@ -14,7 +14,7 @@ type Card struct {
 	Description string
 	Source      string
 	Image       string
-	// Tags        []string
+	Tags        string
 }
 
 type CardResponse struct {
@@ -28,5 +28,5 @@ type CardResponse struct {
 	Description string    `json:"description"`
 	Source      string    `json:"source"`
 	Image       string    `json:"image"`
-	// Tags        []string
+	Tags        []string  `json:"tags"`
 }

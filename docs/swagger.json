@@ -17,7 +17,7 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "id",
+                        "description": "Card identification",
                         "name": "id",
                         "in": "query",
                         "required": true
@@ -59,7 +59,7 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "id",
+                        "description": "Card identification",
                         "name": "id",
                         "in": "query",
                         "required": true
@@ -102,7 +102,7 @@
                 }
             },
             "post": {
-                "description": "Creating a new card",
+                "description": "Create a new card",
                 "consumes": [
                     "application/json"
                 ],
@@ -239,6 +239,12 @@
                 },
                 "source": {
                     "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -360,6 +366,12 @@
                 },
                 "source": {
                     "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "updatedAt": {
                     "type": "string"

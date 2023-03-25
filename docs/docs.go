@@ -29,7 +29,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "id",
+                        "description": "Card identification",
                         "name": "id",
                         "in": "query",
                         "required": true
@@ -71,7 +71,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "id",
+                        "description": "Card identification",
                         "name": "id",
                         "in": "query",
                         "required": true
@@ -114,7 +114,7 @@ const docTemplate = `{
                 }
             },
             "post": {
-                "description": "Creating a new card",
+                "description": "Create a new card",
                 "consumes": [
                     "application/json"
                 ],
@@ -251,6 +251,12 @@ const docTemplate = `{
                 },
                 "source": {
                     "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -372,6 +378,12 @@ const docTemplate = `{
                 },
                 "source": {
                     "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "updatedAt": {
                     "type": "string"

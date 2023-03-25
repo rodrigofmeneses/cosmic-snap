@@ -13,6 +13,10 @@ definitions:
         type: integer
       source:
         type: string
+      tags:
+        items:
+          type: string
+        type: array
     type: object
   handler.CreateCardResponse:
     properties:
@@ -91,6 +95,10 @@ definitions:
         type: integer
       source:
         type: string
+      tags:
+        items:
+          type: string
+        type: array
       updatedAt:
         type: string
     type: object
@@ -131,7 +139,7 @@ paths:
     get:
       description: Show a card
       parameters:
-      - description: id
+      - description: Card identification
         in: query
         name: id
         required: true
@@ -157,7 +165,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: Creating a new card
+      description: Create a new card
       parameters:
       - description: Request body
         in: body
@@ -188,7 +196,7 @@ paths:
       - application/json
       description: Update a card
       parameters:
-      - description: id
+      - description: Card identification
         in: query
         name: id
         required: true
