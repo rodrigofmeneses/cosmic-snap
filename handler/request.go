@@ -45,7 +45,7 @@ func (r *CreateCardRequest) Validate() error {
 	if r.Image == "" {
 		return errParamIsRequired("image", "string")
 	}
-	if r.Tags == nil {
+	if len(r.Tags) < 1 {
 		return errParamIsRequired("tags", "string[]")
 	} else {
 		// Check if any tag is null
@@ -64,18 +64,29 @@ func (r *CreateCardRequest) Validate() error {
 // UpdateCard
 
 type UpdateCardRequest struct {
-	Name        string `json:"name"`
-	Cost        *int64 `json:"cost"`
-	Power       *int64 `json:"power"`
-	Description string `json:"description"`
-	Source      string `json:"source"`
-	Image       string `json:"image"`
+	Name        string   `json:"name"`
+	Cost        *int64   `json:"cost"`
+	Power       *int64   `json:"power"`
+	Description string   `json:"description"`
+	Source      string   `json:"source"`
+	Image       string   `json:"image"`
+	Tags        []string `json:"tags"`
 }
 
 func (r *UpdateCardRequest) Validate() error {
 	// If any field is provided validation is truthy
-	if r.Name != "" || r.Cost != nil || r.Power != nil || r.Description != "" || r.Source != "" || r.Image != "" {
+	if r.Name != "" || r.Cost != nil || r.Power != nil || r.Description != "" || r.Source != "" || r.Image != "" || len(r.Tags) > 0 {
+		// Check if any tag is null
+		for i := 0; i < len(r.Tags); i++ {
+			if r.Tags[i] == "" {
+				return errParamIsRequired("tag", "string")
+			}
+			if strings.Contains(r.Tags[i], ",") {
+				return fmt.Errorf("don't use commas on tags")
+			}
+		}
 		return nil
+
 	}
 	return fmt.Errorf("at least one parameter is needed or malformed body")
 }

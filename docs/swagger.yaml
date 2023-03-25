@@ -67,6 +67,10 @@ definitions:
         type: integer
       source:
         type: string
+      tags:
+        items:
+          type: string
+        type: array
     type: object
   handler.UpdateCardResponse:
     properties:

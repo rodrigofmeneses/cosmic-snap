@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/rodrigofmeneses/cosmic-snap/schemas"
@@ -62,11 +63,16 @@ func UpdateCardHandler(ctx *gin.Context) {
 	if request.Image != "" {
 		card.Image = request.Image
 	}
+	if request.Tags != nil {
+		card.Tags = strings.Join(request.Tags, ",")
+	}
 	// Save card
 	if err := db.Save(&card).Error; err != nil {
 		logger.Errorf("error updating card: %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, "error updating card")
 		return
 	}
-	sendSuccess(ctx, http.StatusOK, "update-card", card)
+	// Response
+	cardResponse := formatCardToResponse(card)
+	sendSuccess(ctx, http.StatusOK, "update-card", cardResponse)
 }
