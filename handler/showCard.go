@@ -32,5 +32,7 @@ func ShowCardHandler(ctx *gin.Context) {
 		sendError(ctx, http.StatusNotFound, fmt.Sprintf("card with id: %s not found", id))
 		return
 	}
-	sendSuccess(ctx, http.StatusOK, "show-card", &card)
+	// Response
+	cardResponse := formatCardToResponse(card)
+	sendSuccess(ctx, http.StatusOK, "show-card", &cardResponse)
 }
