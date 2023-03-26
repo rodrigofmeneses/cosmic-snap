@@ -21,7 +21,7 @@ This project is a marvel snap API to manage cards built using Golang. The API is
 
 ## Live Version
 
-You can check the documentation and perform tests to the API by visiting the live version hosted at []().
+You can check the documentation and perform tests to the API by visiting the live version hosted at [here](https://cosmic-snap-production.up.railway.app/swagger/index.html).
 
 ## Installation
 
